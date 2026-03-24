@@ -15,5 +15,6 @@ spec:
       containers:
       - name: music-container
         image: vamsichamarthi/musicapp:v1
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
