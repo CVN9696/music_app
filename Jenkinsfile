@@ -23,7 +23,16 @@ pipeline {
                 '''
             }
         }
-
+    stage('Clean Old Docker Images') {
+            steps {
+                sh '''
+                echo "Cleaning old Docker images..."
+                docker rmi -f $(docker images $IMAGE_NAME -q) || true
+                docker system prune -f
+                '''
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 sh '''
