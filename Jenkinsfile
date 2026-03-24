@@ -9,10 +9,10 @@ pipeline {
     stages {
 
         stage('Clone Code') {
-            steps {
-                git 'https://github.com/CVN9696/music_app.git'
-            }
-        }
+    steps {
+        git branch: 'main', url: 'https://github.com/CVN9696/music_app.git'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
@@ -39,16 +39,5 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            mail to: 'your-email@gmail.com',
-                 subject: "SUCCESS: Music App Deployed",
-                 body: "Deployment completed successfully 🚀"
-        }
-        failure {
-            mail to: 'your-email@gmail.com',
-                 subject: "FAILED: Deployment Failed",
-                 body: "Pipeline failed ❌"
-        }
-    }
+   
 }
