@@ -45,7 +45,7 @@ pipeline {
                 }
             }
         }
-
+#k8sdeploy
         stage('Deploy to Kubernetes') {
             steps {
                 withEnv(['KUBECONFIG=/var/lib/jenkins/.kube/config']) {
