@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: music
+  template:
+    metadata:
+      labels:
+        app: music
+    spec:
+      containers:
+      - name: music-container
+        image: vamsichamarthi/musicapp:v1
+        ports:
+        - containerPort: 80
