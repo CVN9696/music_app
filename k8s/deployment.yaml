@@ -3,18 +3,17 @@ kind: Deployment
 metadata:
   name: music-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: music
+      app: music-app
   template:
     metadata:
       labels:
-        app: music
+        app: music-app
     spec:
       containers:
-      - name: music-container
-        image: vamsichamarthi/musicapp:v1
-        imagePullPolicy: Always
+      - name: music-app
+        image: vamsichamarthi/musicappimage:IMAGE_TAG
         ports:
         - containerPort: 80

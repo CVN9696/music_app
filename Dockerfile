@@ -1,5 +1,5 @@
-FROM nginx:latest
+FROM nginx:alpine
 
-COPY index.html /usr/share/nginx/html/
+COPY target/ /usr/share/nginx/html/
 
 EXPOSE 80
