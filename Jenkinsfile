@@ -48,12 +48,14 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
-                kubectl apply -f k8s/deployment.yaml
-                kubectl apply -f k8s/service.yaml
-                kubectl set image deployment/music-app music-app=$IMAGE_NAME:$TAG
-                kubectl rollout status deployment/music-app
-                '''
+                withEnv(['KUBECONFIG=/var/lib/jenkins/.kube/config']) {
+                    sh '''
+                    echo "Deploying to Kubernetes..."
+                    kubectl apply -f k8s/deployment.yaml
+                    kubectl apply -f k8s/service.yaml
+                    kubectl set image deployment/music-app music-app=$IMAGE_NAME:$TAG
+                    kubectl rollout status deployment/music-app
+                    '''
             }
         }
     }
